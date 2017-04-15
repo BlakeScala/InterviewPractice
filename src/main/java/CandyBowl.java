@@ -26,54 +26,56 @@ public class CandyBowl {
   public void fillCandyBowl() {
     List<Object> candyBowl = new ArrayList<>();
     Random rand = new Random();
-    int value;
+    int candyValue;
+    int colorValue;
+
     //add 100 candy pieces to the bowl
-    for (int i = 1; i < 100; i++) {
-      value = rand.nextInt(2);
+    for (int i = 0; i < 100; i++) {
+      candyValue = rand.nextInt(2);
+      colorValue = rand.nextInt(4);
+      System.out.println(i);
 
       //add a skittle
-      if (value  == 0) {
+      if (candyValue  == 0) {
         Skittle s = new Skittle();
-        value = rand.nextInt(4);
-        if (value == 0)
-          s.color = colors.get(value);
-        if (value == 1)
-          s.color = colors.get(value);
-        if (value == 2)
-          s.color = colors.get(value);
-        if (value == 3)
-          s.color = colors.get(value);
+        if (colorValue == 0)
+          s.color = colors.get(colorValue);
+        if (colorValue == 1)
+          s.color = colors.get(colorValue);
+        if (colorValue == 2)
+          s.color = colors.get(colorValue);
+        if (colorValue == 3)
+          s.color = colors.get(colorValue);
 
         candyBowl.add(s);
       }
 
       //or add an m&m
-      if (value == 1) {
+      if (candyValue == 1) {
         MandM m = new MandM();
-        value = rand.nextInt(4);
-
-        if (value == 0)
-          m.color = colors.get(value);
-        if (value == 1)
-          m.color = colors.get(value);
-        if (value == 2)
-          m.color = colors.get(value);
-        if (value == 3)
-          m.color = colors.get(value);
+        if (colorValue == 0)
+          m.color = colors.get(colorValue);
+        if (colorValue == 1)
+          m.color = colors.get(colorValue);
+        if (colorValue == 2)
+          m.color = colors.get(colorValue);
+        if (colorValue == 3)
+          m.color = colors.get(colorValue);
 
         candyBowl.add(m);
       }
     }
 
     bowl = candyBowl;
+    System.out.println("Size of bowl: " + candyBowl.size());
   }
 
   public void print() {
     for (int i = 0; i < bowl.size(); i++) {
       if (bowl.get(i).getClass().toString().contains("Skittle")) {
-        System.out.println(i + " " + ((Skittle)bowl.get(i)).color + " skittle");
+        System.out.println((i + 1) + " " + ((Skittle)bowl.get(i)).color + " skittle");
       } else {
-        System.out.println(i + " " + ((MandM)bowl.get(i)).color + " m&m");
+        System.out.println((i + 1) + " " + ((MandM)bowl.get(i)).color + " m&m");
       }
     }
   }
