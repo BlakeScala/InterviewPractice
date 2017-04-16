@@ -31,11 +31,11 @@ public class CandyBowl {
 
     //add 100 candy pieces to the bowl
     for (int i = 0; i < 100; i++) {
-      candyValue = rand.nextInt(2);
+      // generate a random value for candy and color
+      candyValue = rand.nextInt(3);
       colorValue = rand.nextInt(4);
-      System.out.println(i);
 
-      //add a skittle
+      // add a Skittle
       if (candyValue  == 0) {
         Skittle s = new Skittle();
         if (colorValue == 0)
@@ -50,7 +50,7 @@ public class CandyBowl {
         candyBowl.add(s);
       }
 
-      //or add an m&m
+      // or add an M&M
       if (candyValue == 1) {
         MandM m = new MandM();
         if (colorValue == 0)
@@ -64,6 +64,21 @@ public class CandyBowl {
 
         candyBowl.add(m);
       }
+
+      // or add a Reese's Piece
+      if (candyValue == 2) {
+        ReesesPiece r = new ReesesPiece();
+        if (colorValue == 0)
+          r.color = colors.get(colorValue);
+        if (colorValue == 1)
+          r.color = colors.get(colorValue);
+        if (colorValue == 2)
+          r.color = colors.get(colorValue);
+        if (colorValue == 3)
+          r.color = colors.get(colorValue);
+
+        candyBowl.add(r);
+      }
     }
 
     bowl = candyBowl;
@@ -72,11 +87,12 @@ public class CandyBowl {
 
   public void print() {
     for (int i = 0; i < bowl.size(); i++) {
-      if (bowl.get(i).getClass().toString().contains("Skittle")) {
-        System.out.println((i + 1) + " " + ((Skittle)bowl.get(i)).color + " skittle");
-      } else {
-        System.out.println((i + 1) + " " + ((MandM)bowl.get(i)).color + " m&m");
-      }
+      if (bowl.get(i).getClass().toString().contains("Skittle"))
+        System.out.println((i + 1) + " " + ((Skittle)bowl.get(i)).color + " Skittle");
+      else if (bowl.get(i).getClass().toString().contains("MandM"))
+        System.out.println((i + 1) + " " + ((MandM)bowl.get(i)).color + " M&M");
+      else
+        System.out.println((i + 1) + " " + ((ReesesPiece)bowl.get(i)).color + " Reese's Piece");
     }
   }
 
@@ -85,19 +101,25 @@ public class CandyBowl {
     List<Object> sortedBowl = new ArrayList<>();
     List<Skittle> skittles = new ArrayList<>();
     List<MandM> mandms = new ArrayList<>();
+    List<ReesesPiece> reesesPieces = new ArrayList<>();
 
     for (int i = 0; i < bowl.size(); i++) {
       if (bowl.get(i).getClass().toString().contains("Skittle"))
         skittles.add((Skittle)bowl.get(i));
-      else
+      else if (bowl.get(i).getClass().toString().contains("MandM"))
         mandms.add((MandM)bowl.get(i));
+      else
+        reesesPieces.add((ReesesPiece)bowl.get(i));
     }
 
     Collections.sort(skittles, (Skittle s1, Skittle s2) -> s1.color.compareTo(s2.color));
 
     Collections.sort(mandms, (MandM m1, MandM m2) -> m1.color.compareTo(m2.color));
 
+    Collections.sort(reesesPieces, (ReesesPiece r1, ReesesPiece r2) -> r1.color.compareTo(r2.color));
+
     sortedBowl.addAll(mandms);
     sortedBowl.addAll(skittles);
+    sortedBowl.addAll(reesesPieces);
   }
 }
