@@ -6,25 +6,22 @@ import java.util.List;
 import java.util.Random;
 
 public class CandyBowl {
-  //Declare candy classes
-  public class Skittle {
+
+  public class Candy {
     String color;
   }
 
-  public class MandM {
-    String color;
-  }
+  // Declare candy classes
+  public class Skittle extends Candy {}
+  public class MandM extends Candy {}
+  public class ReesesPiece extends Candy {}
 
-  public class ReesesPiece {
-    String color;
-  }
-
-  List<Object> bowl;
+  List<Candy> bowl;
 
   public List<String> colors = Arrays.asList("Red","Orange","Yellow","Green");
 
   public void fillCandyBowl() {
-    List<Object> candyBowl = new ArrayList<>();
+    List<Candy> candyBowl = new ArrayList<>();
     Random rand = new Random();
     int candyValue;
     int colorValue;
@@ -38,51 +35,26 @@ public class CandyBowl {
       // add a Skittle
       if (candyValue  == 0) {
         Skittle s = new Skittle();
-        if (colorValue == 0)
-          s.color = colors.get(colorValue);
-        if (colorValue == 1)
-          s.color = colors.get(colorValue);
-        if (colorValue == 2)
-          s.color = colors.get(colorValue);
-        if (colorValue == 3)
-          s.color = colors.get(colorValue);
-
+        getCandyColor(s, colorValue);
         candyBowl.add(s);
       }
 
       // or add an M&M
       if (candyValue == 1) {
         MandM m = new MandM();
-        if (colorValue == 0)
-          m.color = colors.get(colorValue);
-        if (colorValue == 1)
-          m.color = colors.get(colorValue);
-        if (colorValue == 2)
-          m.color = colors.get(colorValue);
-        if (colorValue == 3)
-          m.color = colors.get(colorValue);
-
+        getCandyColor(m, colorValue);
         candyBowl.add(m);
       }
 
       // or add a Reese's Piece
       if (candyValue == 2) {
         ReesesPiece r = new ReesesPiece();
-        if (colorValue == 0)
-          r.color = colors.get(colorValue);
-        if (colorValue == 1)
-          r.color = colors.get(colorValue);
-        if (colorValue == 2)
-          r.color = colors.get(colorValue);
-        if (colorValue == 3)
-          r.color = colors.get(colorValue);
-
+        getCandyColor(r, colorValue);
         candyBowl.add(r);
       }
     }
 
     bowl = candyBowl;
-    System.out.println("Size of bowl: " + candyBowl.size());
   }
 
   public void print() {
@@ -98,7 +70,7 @@ public class CandyBowl {
 
   //sort first by candy type, then by color (alphabetically)
   public void sort() {
-    List<Object> sortedBowl = new ArrayList<>();
+    List<Candy> sortedBowl = new ArrayList<>();
     List<Skittle> skittles = new ArrayList<>();
     List<MandM> mandms = new ArrayList<>();
     List<ReesesPiece> reesesPieces = new ArrayList<>();
@@ -113,13 +85,22 @@ public class CandyBowl {
     }
 
     Collections.sort(skittles, (Skittle s1, Skittle s2) -> s1.color.compareTo(s2.color));
-
     Collections.sort(mandms, (MandM m1, MandM m2) -> m1.color.compareTo(m2.color));
-
     Collections.sort(reesesPieces, (ReesesPiece r1, ReesesPiece r2) -> r1.color.compareTo(r2.color));
 
     sortedBowl.addAll(mandms);
     sortedBowl.addAll(skittles);
     sortedBowl.addAll(reesesPieces);
+  }
+
+  public void getCandyColor(Candy candy, int value) {
+    if (value == 0)
+      candy.color = colors.get(value);
+    if (value == 1)
+      candy.color = colors.get(value);
+    if (value == 2)
+      candy.color = colors.get(value);
+    if (value == 3)
+      candy.color = colors.get(value);
   }
 }
