@@ -9,6 +9,17 @@ public class CandyBowl {
 
   public class Candy {
     String color;
+
+    public void getColor(int value) {
+      if (value == 0)
+        this.color = colors.get(value);
+      if (value == 1)
+        this.color = colors.get(value);
+      if (value == 2)
+        this.color = colors.get(value);
+      if (value == 3)
+        this.color = colors.get(value);
+    }
   }
 
   // Declare candy classes
@@ -35,21 +46,21 @@ public class CandyBowl {
       // add a Skittle
       if (candyValue  == 0) {
         Skittle s = new Skittle();
-        getCandyColor(s, colorValue);
+        s.getColor(colorValue);
         candyBowl.add(s);
       }
 
       // or add an M&M
       if (candyValue == 1) {
         MandM m = new MandM();
-        getCandyColor(m, colorValue);
+        m.getColor(colorValue);
         candyBowl.add(m);
       }
 
       // or add a Reese's Piece
       if (candyValue == 2) {
         ReesesPiece r = new ReesesPiece();
-        getCandyColor(r, colorValue);
+        r.getColor(colorValue);
         candyBowl.add(r);
       }
     }
@@ -91,16 +102,7 @@ public class CandyBowl {
     sortedBowl.addAll(mandms);
     sortedBowl.addAll(skittles);
     sortedBowl.addAll(reesesPieces);
-  }
 
-  public void getCandyColor(Candy candy, int value) {
-    if (value == 0)
-      candy.color = colors.get(value);
-    if (value == 1)
-      candy.color = colors.get(value);
-    if (value == 2)
-      candy.color = colors.get(value);
-    if (value == 3)
-      candy.color = colors.get(value);
+    bowl = sortedBowl;
   }
 }
